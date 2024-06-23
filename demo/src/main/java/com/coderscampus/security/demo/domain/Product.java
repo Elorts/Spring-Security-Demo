@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 public record Product(Integer id, String name, BigDecimal price) {};
 
-
 //public class Product {
 //
 //    private Integer id;
