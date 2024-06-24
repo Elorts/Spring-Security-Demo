@@ -1,5 +1,6 @@
 package com.coderscampus.security.demo.security;
 
+import com.coderscampus.security.demo.repository.UserRepository;
 import com.coderscampus.security.demo.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfiguration {
 
+    private UserRepository userRepository;
+
+    public SecurityConfiguration(UserRepository userRepository) {
+        super();
+        this.userRepository = userRepository;
+    }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -24,7 +32,7 @@ public class SecurityConfiguration {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserService(passwordEncoder());
+        return new UserService(passwordEncoder(), userRepository);
     }
 
     @Bean

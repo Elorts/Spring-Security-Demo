@@ -1,11 +1,18 @@
 package com.coderscampus.security.demo.domain;
 
+import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
+@Entity
+@Table(name="users") // overrides name to users (user is reserved word)
 public class User implements UserDetails {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     private String username;
     private String password;
