@@ -43,7 +43,7 @@ public class SecurityConfiguration {
         .authorizeHttpRequests((request) -> {
             request
                     .requestMatchers("/api/v1/users").permitAll()
-                    .requestMatchers("/products").authenticated();
+                    .anyRequest().authenticated();
         })
         .authenticationProvider(authenticationProvider())
         .formLogin(Customizer.withDefaults());
